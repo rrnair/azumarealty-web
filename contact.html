@@ -46,31 +46,35 @@
     <link rel="stylesheet" href="assets/css/aports.css" />
     <link rel="stylesheet" href="assets/css/aports-responsive.css" />
     <script>
+        // JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(
+                function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }                       
+                        console.log('form validated')
+                        form.classList.add('was-validated')
+                    }, false)
+                }
+            );
+            submitToAPI(form);
+        })();
+       
+
         function submitToAPI(e) {
             e.preventDefault();
             var form = document.getElementById("contact-form");
             var url = "https://api.azumarealty.com/contact-us";
-
-            var Namere = /[A-Za-z]{1}[A-Za-z]/;
-            if (!Namere.test($(form.name).val())) {
-                 alert ("Please enter your name");
-                return;
-            }
-            var mobilere = /[0-9]{10}/;
-            if (!mobilere.test($(form.phone).val())) {
-                alert ("Please enter valid mobile number");
-                return;
-            }
-            if ($(form.email).val()=="") {
-                alert ("Please enter your email id");
-                return;
-            }
-
-            // var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
-            // if (!reeamil.test($("#email").val())) {
-            //     alert ("Please enter valid email address");
-            //     return;
-            // }
 
            var name = $(form.name).val();
            var phone = $(form.phone).val();
@@ -93,7 +97,7 @@
 
              success: function () {
                // clear form and show a success message
-               alert("Successfull");
+               alert("Thank you for contacting us, we will get back to you shortly.");
                document.getElementById("contact-form").reset();
                location.reload();
              },
@@ -131,7 +135,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="text">
-                                    <p>J-1505, Whitefield Main Road Brigade Metropolis</p>
+                                    <p>#105, The Arcade, Brigade Metrpolis, Whitefield Main Road</p>
                                 </div>
                             </li>
                             <li>
@@ -139,7 +143,7 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="text">
-                                    <p><a href="haseeb@azuma.co.in">haseeb@azuma.co.in</a></p>
+                                    <p><a href="haseeb@azumarealty.com">haseeb@azumarealty.com</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -246,7 +250,7 @@
                                     </div>
                                     <div class="content">
                                         <p>Write email</p>
-                                        <h5>haseeb@azuma.co.in</h5>
+                                        <h5>haseeb@azumarealty.com</h5>
                                     </div>
                                 </li>
                                 <li>
@@ -255,7 +259,7 @@
                                     </div>
                                     <div class="content">
                                         <p>Visit anytime</p>
-                                        <h5>J-1505, Whitefield Main<br> Road Brigade Metropolis,<br> Kadugodi, Bengaluru,<br> Karnataka 560066</h5>
+                                        <h5>#105, The Arcade, <br>Brigade Metropolis,<br>Whitefield Main Road, Mahadevapura,<br> Bengaluru, Karnataka 560048</h5>
                                     </div>
                                 </li>
                             </ul>
@@ -294,13 +298,14 @@
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="contact-form__input-box">
-                                        <input type="telephone" placeholder="Your Phone" name="phone">
+                                        <input type="email" placeholder="Email address" name="email">
                                     </div>
                                 </div>
 
                                 <div class="col-xl-6">
                                     <div class="contact-form__input-box">
-                                        <input type="text" placeholder="Email address" name="email">
+                                        <input type="telephone" placeholder="Your Phone" name="phone">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -311,8 +316,8 @@
                                     </div>
                                     <div class="contact-form__btn-box">
                                         <div class="g-recaptcha" data-sitekey="6Lc7cVMUAAAAAM1yxf64wrmO8gvi8A1oQ_ead1ys" class="form-control" style="width:100%;"></div>
-                                        <!--button type="submit" class="thm-btn contact-form__btn">Send a Message</button-->
-                                        <button type="button" onClick="submitToAPI(event)" class="thm-btn contact-form__btn">Send a Message</button>
+                                        <button type="submit" class="thm-btn contact-form__btn">Send a Message</button>
+                                        <!-- <button type="button" onClick="submitToAPI(event)" class="thm-btn contact-form__btn">Send a Message</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +376,7 @@
                                     <div class="footer-widget__title-box">
                                         <h3 class="footer-widget__title">Find</h3>
                                     </div>
-                                    <p class="footer-widget__find-text">J-1505,<br> Whitefield Main Road Brigade Metropolis, Kadugodi,<br> Bengaluru, Karnataka 560066</p>
+                                    <p class="footer-widget__find-text">#105, The Arcade,<br> Brigade Metrpolis, <br/> Whitefield Main Road, Mahadevapura,<br> Bengaluru, Karnataka 560048</p>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
@@ -401,7 +406,7 @@
                                                 <span class="fas fa-envelope"></span>
                                             </div>
                                             <div class="text">
-                                                <p><a href="mailto:haseeb@azuma.co.in">haseeb@azuma.co.in</a></p>
+                                                <p><a href="mailto:haseeb@azumarealty.com">haseeb@azumarealty.com</a></p>
                                             </div>
                                         </li>
                                     </ul>

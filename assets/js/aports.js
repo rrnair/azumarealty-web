@@ -321,10 +321,14 @@
       rules: {
         name: {
           required: true
-        },
+        },        
         email: {
           required: true,
           email: true
+        },
+        phone: {
+          required: true,
+          telephone: true
         },
         message: {
           required: true
@@ -340,8 +344,9 @@
           $(form).serialize(),
           function (response) {
             $(form).parent().find(".result").append(response);
-            $(form).find('input[type="text"]').val("");
             $(form).find('input[type="email"]').val("");
+            $(form).find('input[type="text"]').val("");
+            $(form).find('input[type="telephone"]').val("");
             $(form).find("textarea").val("");
           }
         );
