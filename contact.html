@@ -62,12 +62,10 @@
                             event.preventDefault()
                             event.stopPropagation()
                         }                       
-                        console.log('form validated')
                         form.classList.add('was-validated')
                     }, false)
                 }
             );
-            submitToAPI(form);
         })();
        
 
@@ -99,7 +97,7 @@
                // clear form and show a success message
                alert("Thank you for contacting us, we will get back to you shortly.");
                document.getElementById("contact-form").reset();
-               location.reload();
+              // location.reload();
              },
              error: function () {
                // show an error message
@@ -272,7 +270,7 @@
 
         <!--Google Map Start-->
         <section class="contact-page-google-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4261.646493696624!2d77.7003096163401!3d12.992056354472265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDU5JzMxLjEiTiA3N8KwNDInMTAuNiJF!5e0!3m2!1sen!2sin!4v1706077874896!5m2!1sen!2sin" class="google-map__two" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/place/12%C2%B059'31.1%22N+77%C2%B042'10.6%22E/@12.9921881,77.7002109,16.06z/data=!4m4!3m3!8m2!3d12.9919722!4d77.7029444?hl=en&entry=ttu" class="google-map__two" allowfullscreen></iframe>
 
         </section>
         <!--Google Map End-->
@@ -316,8 +314,8 @@
                                     </div>
                                     <div class="contact-form__btn-box">
                                         <div class="g-recaptcha" data-sitekey="6Lc7cVMUAAAAAM1yxf64wrmO8gvi8A1oQ_ead1ys" class="form-control" style="width:100%;"></div>
-                                        <button type="submit" class="thm-btn contact-form__btn">Send a Message</button>
-                                        <!-- <button type="button" onClick="submitToAPI(event)" class="thm-btn contact-form__btn">Send a Message</button> -->
+                                        <!-- <button type="submit" class="thm-btn contact-form__btn">Send a Message</button> -->
+                                        <button type="submit" onClick="submitToAPI(event)" class="thm-btn contact-form__btn">Send a Message</button>
                                     </div>
                                 </div>
                             </div>
